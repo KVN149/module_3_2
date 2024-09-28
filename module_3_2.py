@@ -3,12 +3,10 @@ def send_email(message, recipient, *, sender="university.help@gmail.com"):
         is_prime = False
         for i in (recipient, sender):
             if '@' not in i:
+                print('Невозможно отправить письмо с адреса', sender, 'на адрес', recipient)
+                is_prime = True
                 continue
-            elif '.ru' in i:
-                continue
-            elif '.com' in i:
-                continue
-            elif '.net' in i:
+            if  i.endswith('.ru') or i.endswith('.com') or i.endswith('.net'):
                 continue
             else:
                 print('Невозможно отправить письмо с адреса', sender, 'на адрес', recipient)
@@ -16,9 +14,9 @@ def send_email(message, recipient, *, sender="university.help@gmail.com"):
             continue
         if recipient == sender:
             print('Нельзя отправить письмо самому себе!')
-        elif sender == 'university.help@gmail.com':
+        elif sender == 'university.help@gmail.com' and is_prime == False:
             print('Письмо успешно отправлено с адресаа', sender, 'на адрес', recipient)
-        elif sender != 'university.help@gmail.com' and is_prime == False:
+        elif sender != 'university.help@gmail.com'and is_prime == False:
             print('НЕСТАНДАРТНЫЙ ОТПРАВИТЕЛЬ! Письмо отправлено с адреса', sender, 'на адрес', recipient)
 
 
